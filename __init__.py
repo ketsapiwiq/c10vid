@@ -2,6 +2,7 @@ import bme680
 import leds
 import time
 import display
+import vibra
 # import color
 
 
@@ -57,7 +58,9 @@ def main():
     disp = display.open()
     disp.clear().update()
     leds.clear()
-    # leds.set_powersave()
+    leds.set_powersave()
+    leds.dim_top(1)
+    leds.dim_bottom(1)
 
     with bme680.Bme680() as environment:
         while True:
@@ -72,13 +75,19 @@ def main():
                        str(round(data.eco2, 1)), posy=40)
                 
                 if(data.iaq_accuracy == 2):
-                    disp.print("calibrating...", posy=60)
+                    disp.print("calibrating", posy=60)
 
                 leds.set_all([iaq_color(data.iaq)]*15)
+
+                disp.update()
+
+                if(data.iaq > 250):
+                    vibra.vibrate(500)
+
                 time.sleep(10)
 
             else:
-                disp.print("calibrating...", posy=20)
+                disp.print("calibrating", posy=20)
                 disp.update()
                 oldest_time = time.time()
                 latest_time = oldest_time
@@ -88,7 +97,6 @@ def main():
                     time.sleep_ms(1)  # Feed watch doge
                     latest_time = time.time()
 
-            disp.update()
 
 
 if __name__ == "__main__":
