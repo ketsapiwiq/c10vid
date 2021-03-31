@@ -1,1 +1,0 @@
-from air_quality_indicator import Air_Quality
