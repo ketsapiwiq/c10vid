@@ -11,8 +11,8 @@ This is a card10 app (CCCamp badge).
 
 `bsec_enabled= true` has to be in your `card10.cfg`.
 
-You will need to build and flash the latest firmware according to the card10 documentation.
-To build the firmware, it's very easy just copy-pasting instructions to do it with Docker.
+You will need to **build** and flash the **unreleased** (v1.17) latest firmware according to the card10 documentation.
+Don't worry though, to build the firmware, it's very easy just copy-pasting the Docker instructions.
 
 ## Resources
 - How to build latest firmware with Docker: https://firmware.card10.badge.events.ccc.de/how-to-build.html#docker
