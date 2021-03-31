@@ -84,8 +84,8 @@ def main():
                 latest_time = oldest_time
                 while (latest_time - oldest_time < 10):
                     leds.set(rand() % 11, all_colors[rand() % len(all_colors)])
-                    leds.set_rocket(rand() % 3, rand() % 32)
-                    time.sleep_us(1)  # Feed watch doge
+                    # leds.set_rocket(rand() % 3, rand() % 32)
+                    time.sleep_ms(1)  # Feed watch doge
                     latest_time = time.time()
 
             disp.update()
@@ -93,39 +93,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    # # *****
-    # # disp.print(str(brightness), posx=105)
-
-    # # disp.rect(xs=150, ys=10, xe=158, ye=80, col=rectangleColor, filled=True, size=5)
-    # valueX, valueY = check_arrow(arrowPosition)
-    # print_arrow(valueX, valueY)
-
-    # if show_led_bar:
-    #     min_led, max_led = check_led_bar(arrowPosition)
-    #     led_bar(env[arrowPosition], min_led, max_led)
-    # else:
-    #     leds.clear()
-    #     leds.set_powersave(True)
-
-    # disp.update()
-    # for x in range(0,20):
-    #     utime.sleep(0.05)
-
-    #     if buttons.read(buttons.BOTTOM_LEFT):
-    #         arrowPosition -= 1
-    #         arrowPosition = arrowPosition % 4
-    #         break
-
-    #     if buttons.read(buttons.BOTTOM_RIGHT):
-    #         arrowPosition += 1
-    #         arrowPosition = arrowPosition % 4
-    #         break
-
-    #     if buttons.read(buttons.TOP_RIGHT):
-    #         if show_led_bar:
-    #             show_led_bar = False
-    #             break
-    #         else:
-    #             show_led_bar = True
-    #             break
