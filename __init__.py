@@ -42,13 +42,13 @@ def iaq_string(iaq):
     if (iaq < 100):
         return "Good"
     if (iaq < 150):
-        return "OK"
-    if (iaq < 200):
         return "Ventilate?"
+    if (iaq < 200):
+        return "Ventilate."
     if (iaq < 250):
         return "Ventilate!"
     if (iaq <= 350):
-        return "Dangerous"
+        return "Danger!"
     if (iaq > 350):
         return "Leave!"
 
@@ -81,8 +81,13 @@ def main():
 
                 disp.update()
 
-                if(data.iaq > 250):
+                if(data.iaq > 150):
                     vibra.vibrate(500)
+                    time.sleep(2)
+                    vibra.vibrate(500)
+                    time.sleep(2)
+                    vibra.vibrate(500)
+
 
                 time.sleep(10)
 
