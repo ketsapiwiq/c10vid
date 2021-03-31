@@ -81,12 +81,12 @@ def main():
 
                 disp.update()
 
-                if(data.iaq > 150):
-                    vibra.vibrate(500)
-                    time.sleep(2)
-                    vibra.vibrate(500)
-                    time.sleep(2)
-                    vibra.vibrate(500)
+                # if(data.iaq > 150):
+                #     vibra.vibrate(500)
+                #     time.sleep(2)
+                #     vibra.vibrate(500)
+                #     time.sleep(2)
+                #     vibra.vibrate(500)
 
 
                 time.sleep(10)
