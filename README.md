@@ -9,13 +9,13 @@ Based on [@schneider's work](https://git.card10.badge.events.ccc.de/card10/firmw
 
 This is a card10 app (CCCamp badge).
 
-`bsec_enabled` has to be in your `card10.cfg`.
+`bsec_enabled= true` has to be in your `card10.cfg`.
 
 You will need to build and flash the latest firmware according to the card10 documentation.
 To build the firmware, it's very easy just copy-pasting instructions to do it with Docker.
 
 ## Resources
-- How to build with Docker: https://firmware.card10.badge.events.ccc.de/how-to-build.html#docker
+- How to build latest firmware with Docker: https://firmware.card10.badge.events.ccc.de/how-to-build.html#docker
 - How to flash: https://firmware.card10.badge.events.ccc.de/how-to-flash.html
 
 - Add measures to Phyphox.org app: https://git.card10.badge.events.ccc.de/card10/firmware/-/merge_requests/380
