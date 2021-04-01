@@ -140,7 +140,7 @@ def main():
 
             else:
                 disp.print("Calibrating...", posy=0, font=display.FONT16)
-                disp.print("Put badge in open-air & closed box w/ exhaled air for 10min", posy=40, font=display.FONT8)
+                disp.print("Place the badge both in open-air and a closed box with exhaled air for around 10min each.", posy=40, font=display.FONT8)
 
                 disp.update()
                 if(not power_saving):
