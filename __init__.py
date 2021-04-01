@@ -139,7 +139,7 @@ def main():
                 time.sleep(1)
 
             else:
-                disp.print("(calibrating...)", posy=0, font=display.FONT16)
+                disp.print("Calibrating...", posy=0, font=display.FONT16)
                 disp.print("Put badge in open-air & closed box w/ exhaled air for 10min", posy=40, font=display.FONT8)
 
                 disp.update()
