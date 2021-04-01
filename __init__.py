@@ -7,7 +7,7 @@ import buttons
 
 
 colors = {'lime': [0, 255, 0], 'green': [0, 128, 0], 'yellow': [255, 255, 0], 'orange': [
-    255, 128, 0], 'red': [255, 0, 0], 'purple': [128, 0, 128], 'brown': [128, 0, 0]}
+    255, 128, 0], 'red': [255, 0, 0], 'purple': [128, 0, 128], 'brown': [128, 0, 0], 'blue': [0, 0, 255]}
 
 gs = 160
 all_colors = [((i >> 2) * gs, (i >> 1 & 1) * gs, (i & 1) * gs)
@@ -55,6 +55,11 @@ def iaq_string(iaq):
     if (iaq > 350):
         return "Leave!"
 
+def leds_set_bottom(co2_color):
+    leds.set(11, co2_color)
+    leds.set(12, co2_color)
+    leds.set(13, co2_color)
+    leds.set(14, co2_color)
 
 def main():
 
@@ -80,56 +85,62 @@ def main():
 
             if(data.iaq_accuracy >= 2):
 
-                leds.set_all([iaq_color(data.iaq)]*15)
+                leds.set_all([iaq_color(data.iaq)]*11)
 
                 # Set green rocket if under 600 ppm: no mask required
                 if(data.eco2 < 600):
+                    co2_text = "No masks required"
+                    co2_color = colors['green']
                     leds.set_rocket(2, 31)
                     leds.set_rocket(1, 0)
                     leds.set_rocket(0, 0)
+
                 # Set blue rocket if over 600 ppm: masks required
                 elif(data.eco2 >= 600 and data.eco2 < 900):
+                    co2_text = "Wear masks inside"
+                    co2_color = colors['blue']
                     leds.set_rocket(0, 31)
                     leds.set_rocket(1, 0)
                     leds.set_rocket(2, 0)
                 # Set yellow rocket if over 900 ppm: dangerous even with masks on
                 else:
-                    leds.set_rocket(1, 31)
+                    co2_text = "Masks won't save you!"
+                    co2_color = colors['orange']
+                    leds.flash_rocket(1, 31, 500)
                     leds.set_rocket(2, 0)
                     leds.set_rocket(0, 0)
+                #     vibra.vibrate(500)
+                #     time.sleep(1)
+                #     vibra.vibrate(500)
+                #     time.sleep(1)
+                #     vibra.vibrate(500)
+
+                leds_set_bottom(co2_color)
 
                 if(not power_saving):
                     disp.backlight(25)
                     disp.print("IAQ: " + str(data.iaq))
-                    disp.print(iaq_string(data.iaq), posy=20, fg=iaq_color(data.iaq))
                     disp.print("CO2: " +
-                               str(int(data.eco2)), posy=40)
-
-                    if(data.iaq_accuracy == 2):
-                        disp.print("calibrating", posy=60)
+                               str(int(data.eco2)) + "ppm", posy=40)
+                    if(data.iaq_accuracy == 3):
+                        disp.print(iaq_string(data.iaq), posy=20,
+                                   fg=iaq_color(data.iaq))
+                        disp.print(co2_text, posy=60, fg=co2_color,
+                                   font=display.FONT12)
+                    else:
+                        disp.print("(still calibrating...)",
+                                   posy=60, font=display.FONT12)
                 else:
                     disp.clear()
                     disp.backlight(0)
 
                 disp.update()
 
-
-                # if(data.iaq > 150):
-                #     vibra.vibrate(500)
-                #     time.sleep(2)
-                #     vibra.vibrate(500)
-                #     time.sleep(2)
-                #     vibra.vibrate(500)
-
                 time.sleep(1)
 
             else:
-                disp.print("calibrating", posy=20)
-
-                if(data.iaq_accuracy == 0):
-                    disp.print("0%", posy=40, posx=70)
-                elif(data.iaq_accuracy == 1):
-                    disp.print("33%", posy=40, posx=60)
+                disp.print("(calibrating...)", posy=0, font=display.FONT16)
+                disp.print("Put badge in open-air & closed box w/ exhaled air for 10min", posy=40, font=display.FONT8)
 
                 disp.update()
                 if(not power_saving):
