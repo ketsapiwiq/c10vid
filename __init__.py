@@ -55,11 +55,13 @@ def iaq_string(iaq):
     if (iaq > 350):
         return "Leave!"
 
+
 def leds_set_bottom(co2_color):
     leds.set(11, co2_color)
     leds.set(12, co2_color)
     leds.set(13, co2_color)
     leds.set(14, co2_color)
+
 
 def main():
 
@@ -97,16 +99,17 @@ def main():
 
                 # Set blue rocket if over 600 ppm: masks required
                 elif(data.eco2 >= 600 and data.eco2 < 900):
-                    co2_text = "Wear masks inside"
+                    co2_text = "Wear masks"
                     co2_color = colors['blue']
                     leds.set_rocket(0, 31)
                     leds.set_rocket(1, 0)
                     leds.set_rocket(2, 0)
                 # Set yellow rocket if over 900 ppm: dangerous even with masks on
                 else:
-                    co2_text = "Masks won't save you!"
+                    co2_text = "Masks could be not enough!"
                     co2_color = colors['orange']
-                    leds.flash_rocket(1, 31, 500)
+
+                    leds.set_rocket(1, 31)
                     leds.set_rocket(2, 0)
                     leds.set_rocket(0, 0)
                 #     vibra.vibrate(500)
@@ -125,7 +128,7 @@ def main():
                     if(data.iaq_accuracy == 3):
                         disp.print(iaq_string(data.iaq), posy=20,
                                    fg=iaq_color(data.iaq))
-                        disp.print(co2_text, posy=60, fg=co2_color,
+                        disp.print(co2_text, posy=65, fg=co2_color,
                                    font=display.FONT12)
                     else:
                         disp.print("(still calibrating...)",
@@ -140,7 +143,8 @@ def main():
 
             else:
                 disp.print("Calibrating...", posy=0, font=display.FONT16)
-                disp.print("Place the badge both in open-air then in a closed box with exhaled air for around 10min each.", posy=40, font=display.FONT8)
+                disp.print(
+                    "Place the badge both in open-air then in a closed box with exhaled air for around 10min each.", posy=40, font=display.FONT8)
 
                 disp.update()
                 if(not power_saving):
