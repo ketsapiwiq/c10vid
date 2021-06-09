@@ -9,9 +9,9 @@ Based on [@schneider's work](https://git.card10.badge.events.ccc.de/card10/firmw
 
 This is a card10 app (CCCamp badge).
 
-`bsec_enabled= true` has to be in your `card10.cfg`.
+`bsec_enable = true` has to be in your `card10.cfg`.
 
-You will need to **build** and flash the **unreleased** (v1.17) latest firmware according to the card10 documentation.
+You will need to flash the latest firmware (v1.17) according to the card10 documentation.
 Don't worry though, to build the firmware, it's very easy just copy-pasting the Docker instructions.
 
 ## Resources
@@ -24,4 +24,4 @@ Don't worry though, to build the firmware, it's very easy just copy-pasting the 
 ## TODO:
 - Improve Pycardium so that it also exposes the "Human Volatile Organic Compounds concentration" measure
   - Also make it exportable in BLE to access it with phyphox
-- Fine-tune measures for COVID? 
+- Fine-tune measures for COVID?
