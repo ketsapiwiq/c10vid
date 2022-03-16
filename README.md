@@ -27,6 +27,7 @@ You will need to flash the latest firmware (v1.17) according to the card10 docum
 
 ## TODO:
 
+- Add info from the pulse oxymeter sensor (SPO2 calculation through max86150)
 - Improve Pycardium so that it also exposes the "Human Volatile Organic Compounds concentration" measure
   - Also make it exportable in BLE to access it with phyphox
 - Fine-tune measures for COVID?
