@@ -2,6 +2,8 @@
 
 <https://github.com/ketsapiwiq/c10vid>
 
+!["Photo of the badge"](c10vid.jpg)
+
 This app will show you current CO2 concentration (ppm) and the Index for Air Quality of your environment, and flash LEDs and vibrate accordingly.
 
 This is not based on anything seriously scientific but it could be taken as a clue you need to ventilate the room to diminish risks of COVID-19 contamination.
